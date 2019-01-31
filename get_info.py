@@ -17,13 +17,13 @@ def write_data(list_link):
 		f.write(res)
 		f.close()
 
-def compare(content):
+def compare(content,list_link):
 	with open('res.txt','r') as f:
 		if content == f.read():
 			return
 			f.close()
 		else:
-			sendmessage(content)
+			sendmessage(list_link)
 			f.close()
 			with open("res.txt","w") as f:
 				f.write(content)
@@ -31,13 +31,15 @@ def compare(content):
 			
 			
 			
-def sendmessage(content):
-	bot.send_message("@channelname", content)
+def sendmessage(list_link):
+	for a in list_link:
+		b = a.replace('href=".','http://www.ccdi.gov.cn/scdc')
+		bot.send_message("@channelname", b)
 
 
 
 
-bot = telegram.Bot(token='YOURTOKEN')
+#bot = telegram.Bot(token='YOURTOKEN')
 
 r = requests.get("http://www.ccdi.gov.cn/scdc/")
 r.encoding='utf-8'
@@ -48,7 +50,7 @@ link = chin(soup.find_all("ul",{'class':'list_news_dl fixed'}))
 link = link.replace("\n","")
 list_link = re.findall(r'(?<=<li>).*?(?=</li>)',link)
 stl = str(list_link)
-compare(stl)
+compare(stl,list_link)
 
 
 #print chin(list_link)
