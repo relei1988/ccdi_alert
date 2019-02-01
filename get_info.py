@@ -35,10 +35,11 @@ def compare(content,list_link):
 			
 def sendmessage(list_link):
 	with open('data.json','r') as f:
-		data = {}
-		if f.read() == False:
-			data = eval(f.read())
+		data = eval(f.read())
+		td = f.read()
+		print len(td)
 		f.close()
+
 
 	for a in list_link:
 		b = a.replace('href=".','http://www.ccdi.gov.cn/scdc')
