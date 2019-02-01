@@ -32,10 +32,16 @@ def compare(content,list_link):
 			
 			
 def sendmessage(list_link):
+	data = {}
 	for a in list_link:
 		b = a.replace('href=".','http://www.ccdi.gov.cn/scdc')
-		bot.send_message("@channelname", b)
-
+		#print b
+		addr = re.findall(r'(?<=<a ).*?(?=")',b)
+		title = re.findall(r'(?<=blank">).*?(?=</a>)',b)
+		date = re.findall(r'(?<=<span>).*?(?=</span>)',b)
+		data[title[0]] = {"date":date[0],"addr":addr[0]}
+		#bot.send_message("@channelname", b)	
+	print chin(data) #data为获取当前最新公告，转化为dict，{'吉林白城市人大常委会原党组书记王锐接受审查调查': {'date': '2019-02-01', 'addr': 'http://www.ccdi.gov.cn/scdc/sggb/zjsc/201902/t20190201_188187.html'}, '哈尔滨金融学院原党委书记邓福庆接受监察调查': {'date': '2019-01-28', 'addr': 'http://www.ccdi.gov.cn/scdc/sggb/zjsc/201901/t20190128_187829.html'}}
 
 
 
