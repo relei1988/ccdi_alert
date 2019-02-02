@@ -13,13 +13,13 @@ def chin(word):
 
 
 def write_data(list_link):
-	with open("res.txt","w") as f:
+	with open("./res.txt","w") as f:
 		res = str(list_link)
 		f.write(res)
 		f.close()
 
 def compare(content,list_link):
-	with open('res.txt','r') as f:
+	with open('./res.txt','r') as f:
 		if content == f.read():
 			f.close()
 			return
@@ -27,7 +27,7 @@ def compare(content,list_link):
 		else:
 			sendmessage(list_link)
 			f.close()
-			with open("res.txt","w") as f:
+			with open("./res.txt","w") as f:
 				f.write(content)
 				f.close()
 			
