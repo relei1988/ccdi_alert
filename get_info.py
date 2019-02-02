@@ -34,10 +34,8 @@ def compare(content,list_link):
 			
 			
 def sendmessage(list_link):
-	with open('data.json','r') as f:
-		data = eval(f.read())
-		td = f.read()
-		print len(td)
+	with open('./data.json','r') as f:
+		data = json.loads(f.read())
 		f.close()
 
 
@@ -55,16 +53,13 @@ def sendmessage(list_link):
 
 
 
-		#bot.send_message("@channelname", b)	
+
 	#print chin(data)
-	#data为获取当前最新公告，转化为dict，{'吉林白城市人大常委会原党组书记王锐接受审查调查': {'date': '2019-02-01', 'addr': 'http://www.ccdi.gov.cn/scdc/sggb/zjsc/201902/t20190201_188187.html'}, '哈尔滨金融学院原党委书记邓福庆接受监察调查': {'date': '2019-01-28', 'addr': 'http://www.ccdi.gov.cn/scdc/sggb/zjsc/201901/t20190128_187829.html'}}
-	with open("data.json","w") as f:
-		f.write(str(data))
+	#data 为获取当前最新公告，转化为dict，{'吉林白城市人大常委会原党组书记王锐接受审查调查': {'date': '2019-02-01', 'addr': 'http://www.ccdi.gov.cn/scdc/sggb/zjsc/201902/t20190201_188187.html'}, '哈尔滨金融学院原党委书记邓福庆接受监察调查': {'date': '2019-01-28', 'addr': 'http://www.ccdi.gov.cn/scdc/sggb/zjsc/201901/t20190128_187829.html'}}
+	with open("./data.json","w") as f:
+		js_data = json.dumps(data,ensure_ascii=False, encoding='UTF-8').encode('utf-8')
+		f.write(js_data)
 		f.close()
-
-
-
-
 
 #bot = telegram.Bot(token='YOURTOKEN')
 
